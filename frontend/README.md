@@ -4,6 +4,12 @@ This is the frontend client for the **AI Movie Ticket Booking Assistant (CineAI)
 
 ---
 
+## 🌐 Live Application
+- **Live Deployed App**: **[https://ai-movie-ticket-booking-4.onrender.com](https://ai-movie-ticket-booking-4.onrender.com)**
+- **GitHub Repository**: **[https://github.com/vishaltvgithub/ai-movie-ticket-booking](https://github.com/vishaltvgithub/ai-movie-ticket-booking)**
+
+---
+
 ## 🚀 Quick Start
 
 ### 1. Install Dependencies

@@ -4,6 +4,15 @@
 
 ---
 
+### 🌐 Live Demo & Deployment
+
+| Resource | Link |
+|---|---|
+| **🚀 Live Application (Render)** | **[https://ai-movie-ticket-booking-4.onrender.com](https://ai-movie-ticket-booking-4.onrender.com)** |
+| **🐙 GitHub Repository** | **[https://github.com/vishaltvgithub/ai-movie-ticket-booking](https://github.com/vishaltvgithub/ai-movie-ticket-booking)** |
+
+---
+
 ## 📌 Features Overview
 
 - **🏠 Cinematic Landing Page**: Dynamic hero search, real-time dashboard metric counters, categorized movie grids (Now Showing, Trending, AI Curated).
@@ -214,25 +223,6 @@ PORT=8000
 HOST=0.0.0.0
 FRONTEND_URL=http://localhost:5173
 ```
-
----
-
-## 🌐 Public Deployment Guide
-
-### Deploying on Render
-
-1. **Backend (Web Service)**:
-   - **Root Directory**: `backend`
-   - **Environment**: `Python 3`
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-   - **Environment Variables**: `GROQ_API_KEY`, `SECRET_KEY`
-
-2. **Frontend (Static Site)**:
-   - **Root Directory**: `frontend`
-   - **Build Command**: `npm run build`
-   - **Publish Directory**: `dist`
-   - **Environment Variables**: `VITE_API_URL` = `https://<YOUR-BACKEND-NAME>.onrender.com/api`
 
 ---
 
