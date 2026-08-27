@@ -77,6 +77,12 @@ def root():
         "api_prefix": "/api"
     }
 
+@app.get("/health")
+@app.get("/api/health")
+def health_check():
+    """Independent health check endpoint for Railway/uptime monitors."""
+    return {"status": "ok"}
+
 @app.get("/api/stats", response_model=DashboardStats)
 def get_dashboard_stats(db: Session = Depends(get_db)):
     movies_count = db.query(models.Movie).count()
