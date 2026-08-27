@@ -1,15 +1,14 @@
 import axios from 'axios';
 
-// Default backend API base URL with dynamic environment resolution
-const rawBase = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').trim();
-const API_BASE_URL = rawBase.endsWith('/api') ? rawBase : `${rawBase.replace(/\/+$/, '')}/api`;
+// Default backend API base URL
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 15000,
+  timeout: 10000,
 });
 
 // Add interceptor to include JWT token if stored
