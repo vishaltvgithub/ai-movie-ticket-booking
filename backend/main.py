@@ -1,4 +1,3 @@
-import os
 import logging
 from datetime import date
 from fastapi import FastAPI, Depends
@@ -35,25 +34,12 @@ origins = [
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://localhost:4173",
-    "http://127.0.0.1:4173",
+    "*"
 ]
-
-frontend_url = os.getenv("FRONTEND_URL", "").strip()
-if frontend_url and frontend_url not in origins:
-    origins.append(frontend_url)
-
-cors_env = os.getenv("CORS_ORIGINS", "").strip()
-if cors_env:
-    for origin in cors_env.split(","):
-        o = origin.strip()
-        if o and o not in origins:
-            origins.append(o)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins if origins else ["*"],
-    allow_origin_regex=r"https?://.*",
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -77,12 +63,6 @@ def root():
         "api_prefix": "/api"
     }
 
-@app.get("/health")
-@app.get("/api/health")
-def health_check():
-    """Independent health check endpoint for Railway/uptime monitors."""
-    return {"status": "ok"}
-
 @app.get("/api/stats", response_model=DashboardStats)
 def get_dashboard_stats(db: Session = Depends(get_db)):
     movies_count = db.query(models.Movie).count()
@@ -102,6 +82,4 @@ def get_dashboard_stats(db: Session = Depends(get_db)):
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.getenv("PORT", 8000))
-    host = os.getenv("HOST", "0.0.0.0")
-    uvicorn.run("main:app", host=host, port=port, reload=False)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
