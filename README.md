@@ -1,70 +1,58 @@
 # 🎬 CineAI — AI Movie Ticket Booking Assistant
-> **UPS Hackathon Project Submission**  
-> An intelligent, end-to-end movie ticket discovery and booking platform featuring natural language cinema recommendations, AI-powered seat optimization, real-time showtime scheduling, and zero double-booking transactional guarantees.
+> **Full-Stack AI Cinema Discovery & Ticket Booking Platform**  
+> An intelligent, end-to-end movie ticket booking platform featuring natural language movie recommendations, AI-powered acoustic & viewing angle seat suggestions, real-time showtime scheduling, and zero double-booking transactional guarantees.
 
 ---
 
-## 📌 Problem Statement
-Finding the right movie, filtering showtimes across scattered multiplexes, and securing optimal viewing seats can be tedious and time-consuming. Users often struggle to match their mood, group dynamics (family vs. date night), and language preferences with current screenings.
+## 📌 Features Overview
 
-## 💡 Solution
-**CineAI** bridges the gap with a modern conversational concierge and booking engine that:
-1. **Discovers & Recommends Movies**: Interprets natural language queries (e.g. *"I want a funny movie with my family"*, *"Suggest a Tamil action movie tonight"*) using semantic entity extraction.
-2. **Finds Suitable Theatres & Timings**: Aggregates multiplex show schedules (PVR, INOX, AGS, SPI, Cinepolis).
-3. **AI Seat Recommendation**: Evaluates cinema screen acoustics and viewing angles to suggest middle-row, center-aligned contiguous seats (e.g. C4 & C5).
-4. **Guarantees Transaction Integrity**: Prevents double booking via database-level transactional validation.
-5. **Issues Digital E-Tickets**: Provides downloadable, barcode-verified passes with unique booking codes (`UPS-MOV-XXXXXX`).
-
----
-
-## 🏗️ System Architecture
-
-```
-User (Browser)
-   │
-   ▼
-React + Vite Frontend (Cinema Dark Theme & Glassmorphism UI)
-   │ (Axios REST calls / JWT Auth / Toast Alerts / Interactive CineAI Assistant)
-   ▼
-FastAPI Backend (Uvicorn / Pydantic / SQLAlchemy / CORS Enabled)
-   ├── Routers: auth, movies, theatres, shows, seats, bookings, ai
-   └── Services: ai_service, recommendation_service, booking_service
-   │
-   ▼
-MySQL Database (`movie_booking_db` with Schema + Seed Data)
-```
-
----
-
-## ✨ Key Features
-
-- **🏠 Cinematic Landing Page**: Dynamic hero search, stats metric counter (Movies, Theatres, Shows Today, Bookings), Now Showing, Trending, and AI Curated categories.
-- **🔍 Multi-Criteria Movie Search**: Live keyword search across titles, actors, directors, genres (Action, Comedy, Romance, Thriller, Sci-Fi, Horror), languages (Tamil, Hindi, English), and ratings (8.0+ ⭐).
+- **🏠 Cinematic Landing Page**: Dynamic hero search, real-time dashboard metric counters, categorized movie grids (Now Showing, Trending, AI Curated).
+- **🔍 Multi-Criteria Search & Filter**: Live keyword search across title, director, actors, genre (Action, Comedy, Romance, Thriller, Sci-Fi, Horror), language (Tamil, Hindi, English), and ratings (8.0+ ⭐).
 - **✨ CineAI Floating Chatbot**:
-  - Context-aware natural language understanding.
-  - Generates rich interactive movie cards inside chat bubbles with instant *"Book Now"* actions.
-  - Hybrid intelligence: 100% functional offline rule-based NLP + optional plug-and-play LLM support.
-- **🎦 Theatre & Showtime Selection**: Date strip picker (Today, Tomorrow, Upcoming) with multiplex cards and showtime badges (10:30 AM, 1:45 PM, 4:30 PM, 7:15 PM, 10:30 PM).
-- **💺 Interactive Seat Matrix**:
+  - Semantic natural language processing for intent & mood recognition.
+  - Generates interactive movie cards inside chat bubbles with instant *"Book Now"* actions.
+  - Hybrid intelligence: Works 100% offline with rule-based NLP + optional Groq LLM integration.
+- **🎦 Theatre & Showtime Selection**: Date strip picker (Today, Tomorrow, Upcoming) with multiplex cards and showtime badges (PVR, INOX, AGS, SPI, Cinepolis).
+- **💺 Interactive Cinema Seat Matrix**:
   - Tiers: Regular (₹150), Premium (₹220), VIP (₹300).
   - Curved illuminated cinema screen indicator.
-  - Real-time seat status (Available, Selected, Booked, AI Pick).
-- **🧠 "Suggest Best Seats" AI Engine**: Automatically highlights and picks the highest-rated center line-of-sight seats with an explanation banner.
+  - Live seat status (Available, Selected, Booked, AI Recommended).
+- **🧠 "Suggest Best Seats" AI Engine**: Automatically highlights and auto-selects optimal middle-row, center-aligned seats with an explanation banner.
 - **💳 Simulated Checkout & Mock Payment**: UPI (with QR code scanner simulation), Credit/Debit Card, Net Banking, and Wallets.
-- **🎟️ E-Ticket Confirmation & PDF Print**: Professional cinema pass with unique booking ID, QR code, theatre details, and confetti animation.
-- **📑 My Bookings Management**: View all upcoming passes or cancel active reservations.
+- **🎟️ E-Ticket Confirmation & PDF Print**: Professional cinema pass with unique booking ID, QR code, theatre details, and confetti celebration animation.
+- **📑 My Bookings Management**: View all active passes or cancel reservations.
 - **🔐 JWT Authentication**: Secure user registration and login with salted password hashing.
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Layer | Technology | Details |
+| Layer | Technology | Description |
 |---|---|---|
-| **Frontend** | React 18 + Vite | JavaScript, Lucide React Icons, Axios, React Router v6 |
+| **Frontend** | React 19 + Vite | Fast component rendering, Lucide Icons, Axios client, React Router v7 |
 | **Styling** | Vanilla CSS3 | Custom Cinema Dark Theme, Glassmorphism, Google Fonts (`Outfit` & `Plus Jakarta Sans`) |
-| **Backend** | Python 3.10+ & FastAPI | Uvicorn ASGI, Pydantic v2, python-jose (JWT), python-dotenv |
-| **Database & ORM** | MySQL + SQLAlchemy | Relational foreign keys, unique seat constraints, connection pool |
+| **Backend** | Python 3.10+ / FastAPI | High-performance ASGI framework, Uvicorn, Pydantic v2, python-jose (JWT) |
+| **Database & ORM** | SQLite / MySQL / PostgreSQL + SQLAlchemy 2 | Zero-config local SQLite + MySQL/PostgreSQL production support |
+| **AI / LLM** | Groq Cloud LLM + NLP | Fast inference using `groq/compound-mini` or rule-based semantic NLP fallback |
+
+---
+
+## 🏗️ Architecture Diagram
+
+```
+User (Browser / Mobile)
+   │
+   ▼
+React + Vite Frontend (Cinema Dark Theme & Glassmorphic UI)
+   │  (Axios REST API Calls / JWT Token Auth / Toast Alerts / CineAI Chatbot)
+   ▼
+FastAPI Backend (Uvicorn / Pydantic / SQLAlchemy / CORS Enabled)
+   ├── Routers: auth, movies, theatres, shows, seats, bookings, ai
+   └── Services: ai_service, recommendation_service, booking_service
+   │
+   ▼
+Database (SQLite default for zero-config local runs, or MySQL / PostgreSQL)
+```
 
 ---
 
@@ -74,15 +62,16 @@ MySQL Database (`movie_booking_db` with Schema + Seed Data)
 ai-travel-assistent/
 ├── database/
 │   ├── schema.sql                 # MySQL DDL for tables, constraints & indexes
-│   └── seed.sql                   # 12+ movies, 5 theatres, screens, shows & seats
+│   └── seed.sql                   # Initial cinema dataset (movies, theatres, shows)
 ├── backend/
-│   ├── main.py                    # FastAPI app factory, CORS & stats API
-│   ├── database.py                # SQLAlchemy engine & session lifecycle
+│   ├── main.py                    # FastAPI application factory, CORS & /health API
+│   ├── database.py                # SQLAlchemy engine & session lifecycle (SQLite/MySQL)
 │   ├── models.py                  # Declarative ORM models
-│   ├── schemas.py                 # Pydantic request/response validation
+│   ├── schemas.py                 # Pydantic request/response validation schemas
 │   ├── init_db.py                 # Auto-seeding script on startup
+│   ├── test_api.py                # End-to-end integration test suite (10 automated tests)
 │   ├── requirements.txt           # Python package dependencies
-│   ├── .env.example               # Backend configuration template
+│   ├── .env.example               # Backend environment variables template
 │   ├── routers/
 │   │   ├── auth.py                # Registration, Login, JWT tokens
 │   │   ├── movies.py              # Search, filter, recommended movies
@@ -98,7 +87,8 @@ ai-travel-assistent/
 ├── frontend/
 │   ├── index.html                 # Main HTML with cinema metadata
 │   ├── vite.config.js             # Vite bundler config
-│   ├── package.json               # Frontend dependencies
+│   ├── package.json               # Frontend dependencies & scripts
+│   ├── .env.example               # Frontend environment variables template
 │   └── src/
 │       ├── main.jsx               # React DOM root with Context providers
 │       ├── App.jsx                # Route declarations & floating CineAI trigger
@@ -132,182 +122,127 @@ ai-travel-assistent/
 │           ├── MyBookings.jsx     # User tickets & reservation history
 │           ├── Login.jsx          # User sign in
 │           └── Register.jsx       # User sign up
+├── .env.example                   # Root environment configuration template
+├── .gitignore                     # Git ignore rules for secrets and build files
 └── README.md
 ```
 
 ---
 
-## 🗄️ Database Design
+## ⚡ Getting Started (Local Development)
 
-```mermaid
-erDiagram
-    USERS ||--o{ BOOKINGS : places
-    MOVIES ||--o{ SHOWS : has
-    THEATRES ||--o{ SCREENS : contains
-    THEATRES ||--o{ SHOWS : hosts
-    SCREENS ||--o{ SHOWS : displays
-    SCREENS ||--o{ SEATS : contains
-    SHOWS ||--o{ BOOKINGS : reserves
-    BOOKINGS ||--|{ BOOKING_SEATS : includes
-    SEATS ||--o{ BOOKING_SEATS : booked_in
-
-    USERS {
-        int id PK
-        string name
-        string email UK
-        string password_hash
-        datetime created_at
-    }
-    MOVIES {
-        int id PK
-        string title
-        text description
-        string genre
-        string language
-        int duration
-        decimal rating
-        date release_date
-        string poster_url
-        string director
-        text cast
-        string status
-    }
-    THEATRES {
-        int id PK
-        string name
-        string location
-    }
-    SCREENS {
-        int id PK
-        int theatre_id FK
-        string screen_name
-    }
-    SHOWS {
-        int id PK
-        int movie_id FK
-        int theatre_id FK
-        int screen_id FK
-        date show_date
-        string show_time
-    }
-    SEATS {
-        int id PK
-        int screen_id FK
-        string seat_number
-        string seat_type
-        decimal price
-    }
-    BOOKINGS {
-        int id PK
-        string booking_code UK
-        int user_id FK
-        int show_id FK
-        decimal total_amount
-        string booking_status
-        datetime created_at
-    }
-    BOOKING_SEATS {
-        int id PK
-        int booking_id FK
-        int seat_id FK
-    }
-```
+### Prerequisites
+- **Python 3.10+**
+- **Node.js 18+** & **npm**
 
 ---
 
-## 🚀 Step-by-Step Installation & Running Guide
+### 1️⃣ Backend Setup (FastAPI)
 
-### 1. Database Setup (MySQL)
-Open your MySQL CLI or MySQL Workbench:
-```sql
-CREATE DATABASE IF NOT EXISTS movie_booking_db;
-USE movie_booking_db;
-```
-Run the SQL scripts:
-- Execute `database/schema.sql`
-- Execute `database/seed.sql`
-
-*(Note: The backend also has automatic auto-seeding resilience built into `init_db.py`)*
-
----
-
-### 2. Backend Setup (FastAPI)
-Open a terminal in the project directory:
-```bash
+```powershell
+# Navigate to backend folder
 cd backend
-python -m venv venv
 
-# Windows activate:
-venv\Scripts\activate
-
-# macOS / Linux activate:
-# source venv/bin/activate
-
+# Install dependencies
 pip install -r requirements.txt
-uvicorn main:app --reload --host 127.0.0.1 --port 8000
+
+# Start backend server
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
-- Backend API will start at: `http://127.0.0.1:8000`
-- Interactive Swagger API Documentation: `http://127.0.0.1:8000/docs`
+- **Backend API**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- **Interactive Swagger Docs**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **Health Check**: [http://127.0.0.1:8000/health](http://127.0.0.1:8000/health)
 
 ---
 
-### 3. Frontend Setup (React + Vite)
-Open a new terminal in the project directory:
-```bash
+### 2️⃣ Frontend Setup (React + Vite)
+
+Open a **second terminal**:
+```powershell
+# Navigate to frontend folder
 cd frontend
+
+# Install dependencies
 npm install
+
+# Start Vite dev server
 npm run dev
 ```
-- Frontend application will start at: `http://localhost:5173`
+- **Frontend App**: [http://localhost:5173](http://localhost:5173)
 
 ---
 
-## 🏆 Official Hackathon Demo Scenario
+### 3️⃣ Running Automated Tests
 
-Follow this exact flow for the presentation walkthrough:
+Run the end-to-end integration test suite:
+```powershell
+cd backend
+python test_api.py
+```
+**Tests verified:**
+1. Health & Root endpoints
+2. Dashboard metrics retrieval
+3. Movies catalog and multi-criteria search
+4. CineAI natural language chat & recommendations
+5. Theatre seating map generation
+6. AI Center Seat recommendation algorithm
+7. Booking creation and ticket code issuance
+8. Double-booking conflict guard (HTTP 409)
+9. User booking history retrieval
 
-1. **Open Landing Page** (`http://localhost:5173`)
-   - Notice the live stats counter: *Movies Available (12+), Multiplex Theatres (5), Shows Today (45+), Confirmed Bookings*.
-2. **Launch CineAI Assistant**
-   - Click the floating **`✨ CineAI`** button on the bottom right (or "Ask AI" in Hero/Navbar).
-   - Type or click prompt:  
-     👉 *"I want to watch a Tamil action movie tonight."*
-   - CineAI extracts preferences (`genre: Action`, `language: Tamil`, `time: tonight`) and displays matching blockbusters (*Leo: Blood & Thunder* and *Jailer*).
-3. **Open Movie Details**
-   - Click **`Book Now`** on **Leo: Blood & Thunder**.
-   - Review director (*Lokesh Kanagaraj*), cast, synopsis, and rating (8.6⭐).
-4. **Choose Theatre & Showtime**
-   - Select theatre: **PVR Cinemas - Grand Mall**.
-   - Select showtime: **07:15 PM**.
-5. **AI Seat Selection**
-   - Seat selection matrix loads with curved screen indicator.
-   - Click **`Suggest Best Seats`**.
-   - CineAI analyzes the screen matrix and highlights center seats:  
-     *"Seats C4 and C5 in Row C provide a balanced center view and are available together."*
-   - Seats **C4** and **C5** are selected.
-6. **Review Summary & Proceed to Payment**
-   - Click **`Proceed to Payment`**.
-   - Review recipient details and tax calculation.
-   - Select payment mode: **UPI** (or Card).
-   - Click **`Pay ₹519.20`**.
-7. **Instant Booking Confirmation**
-   - Confetti celebration triggers! 🎉
-   - Digital E-Ticket displays with unique code: `UPS-MOV-XXXXXX`, QR code, seats, and screen details.
-   - Click **`Download / Print Ticket`** to test pass printing.
-8. **Verify Persistence in My Bookings**
-   - Click **`View in My Bookings`**.
-   - The newly generated reservation appears in the confirmed list with active ticket status.
+---
+
+## 🔑 Environment Variables
+
+Copy `.env.example` to `.env` in the `backend` folder:
+
+```env
+# Database (defaults to SQLite if unset)
+DATABASE_URL=sqlite:///./movie_booking_db.sqlite
+
+# Security & JWT
+SECRET_KEY=cine_secret_jwt_key_2024
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=1440
+
+# AI Integration (Groq Cloud LLM)
+GROQ_API_KEY=your_groq_api_key_here
+GROQ_MODEL=groq/compound-mini
+
+# Server & CORS
+PORT=8000
+HOST=0.0.0.0
+FRONTEND_URL=http://localhost:5173
+```
+
+---
+
+## 🌐 Public Deployment Guide
+
+### Deploying on Render
+
+1. **Backend (Web Service)**:
+   - **Root Directory**: `backend`
+   - **Environment**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+   - **Environment Variables**: `GROQ_API_KEY`, `SECRET_KEY`
+
+2. **Frontend (Static Site)**:
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm run build`
+   - **Publish Directory**: `dist`
+   - **Environment Variables**: `VITE_API_URL` = `https://<YOUR-BACKEND-NAME>.onrender.com/api`
 
 ---
 
 ## 🔒 Security & Concurrency Design
-- **Double Booking Guard**: Implemented via database transactional locking in `backend/services/booking_service.py` to prevent race conditions when two users select the same seat simultaneously.
-- **Salted Password Hashing**: Passwords stored using salted hashing with JWT access tokens.
-- **CORS Protection**: Explicitly whitelists the Vite client host (`http://localhost:5173`).
-- **Safe Environment Fallbacks**: Works seamlessly offline without requiring paid API keys, with optional LLM enrichment when `LLM_API_KEY` is provided in `.env`.
+- **Zero Double-Booking Guarantee**: Implemented via database transactional locking in `backend/services/booking_service.py` to prevent race conditions when two users select the same seat simultaneously.
+- **Salted Password Hashing**: Passwords stored using SHA-256 salted hashing with signed JWT access tokens.
+- **CORS Protection**: Whitelists frontend client origins with configurable environment variables.
+- **Safe Fallbacks**: Works 100% offline with zero dependencies on third-party APIs, and seamlessly elevates to Groq LLM when configured.
 
 ---
 
-## 👥 Authors
-- **Team**: UPS Hackathon Submission Team
-- **Project**: AI Movie Ticket Booking Assistant (CineAI)
+## 📄 License
+This project is licensed under the MIT License.

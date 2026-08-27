@@ -1,16 +1,44 @@
-# React + Vite
+# 🎬 CineAI Frontend — React + Vite Cinema Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This is the frontend client for the **AI Movie Ticket Booking Assistant (CineAI)** built using **React 19**, **Vite**, and custom **Glassmorphism CSS3**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Quick Start
 
-## React Compiler
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Configure Environment (Optional)
+Create a `.env` file in this directory or use the default:
+```env
+VITE_API_URL=http://127.0.0.1:8000/api
+```
 
-## Expanding the Oxlint configuration
+### 3. Start Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+---
+
+## 🛠️ Available Scripts
+
+- **`npm run dev`**: Starts the local development server with Hot Module Replacement (HMR).
+- **`npm run build`**: Builds the production-ready application to the `dist` folder.
+- **`npm run preview`**: Locally previews the production build.
+- **`npm run lint`**: Runs Oxlint for fast static analysis.
+
+---
+
+## 📂 Key Features & Pages
+- **`Home.jsx`**: Hero search, live cinema dashboard statistics, movie categories.
+- **`Movies.jsx`**: Filterable movie catalog (genre, language, rating).
+- **`MovieDetails.jsx`**: Movie synopsis, cast, director, multiplex showtime picker.
+- **`SeatSelection.jsx`**: Cinema matrix, curved screen, and **AI Best Seat Suggestion** engine.
+- **`Checkout.jsx` & `Payment.jsx`**: Simulated checkout with QR/UPI, cards, and wallet options.
+- **`BookingConfirmation.jsx`**: Digital E-Ticket pass with QR code and PDF print.
+- **`AIChatbot.jsx`**: Floating CineAI conversational assistant.
